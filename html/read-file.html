@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File reader</title>
+</head>
+<body>
+    <h1>File reader</h1>
+    <input type="file" onchange="loadFile(this.files[0])" />
+
+    <p id="output" style="white-space: pre-line;"></p>
+    <script>
+        async function loadFile(file) {
+            let text = await file.text();
+            document.getElementById('output').textContent = text;
+        }
+    </script>
+</body>
+</html>
