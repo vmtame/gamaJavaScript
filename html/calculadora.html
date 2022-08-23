@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suuper Calculadora</title>
+
+    <!-- criar estilo do display //-->
+    <style>
+        #display {
+            width: 250px;
+            height: 40px;
+            background-color: black;
+            margin: 4px;
+            color: white;
+            font-size: 18px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .__calculator--container {
+            border: 1px solid red;
+        }
+        .btn {
+            width: 90px;
+            height: 50px;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .btn.dd {
+            width: 184px;
+        }
+
+        #display--container {
+            border: 1px solid green;
+        }
+    </style>
+
+    <script>
+        function bksp() {
+            var display = document.getElementById('display');
+            display.innerHTML = display.innerHTML.substring(-1);
+            console.log(display.innerHTML.substring(-1));
+        }
+
+        function insert(el) {
+            // operators available
+            const operators = ['%', '/', '*', '+', '-', '.'];
+            
+            const display = document.getElementById('display');
+
+            // current value in display
+            const currValue = display.innerHTML;
+            const lengthOfCurrValue = currValue.length;
+            
+
+            // element is found in operators
+            if( operators.indexOf(el) > 0){
+                if ( operators.indexOf( currValue[lengthOfCurrValue - 1] ) > 0 ) {
+                    // not two operators at the same time
+                    return;
+                }
+            }
+            
+            display.innerHTML = display.innerHTML + el;    
+            
+        }
+
+        function clean() {
+            const display = document.getElementById('display');
+            display.innerHTML = '';
+        }
+
+        function calc() {
+            const display = document.getElementById('display');
+            display.innerHTML = display.innerHTML + ' = ' + eval(display.innerHTML);
+        }
+    </script>
+</head>
+<body>
+    <img src="../img/suuuper_calculadora.png" />
+    
+    <div class="__calculator--container">
+        <div id="display--container">
+            <p id="display"></p>
+        </div>
+        <button class="btn" onclick="insert('%')">%</button>
+        <button class="btn" onclick="clean()">C</button>
+        <button class="btn" onclick="bksp()">&lt;=</button>
+        <button class="btn" onclick="insert('/')">/</button>
+        <br>
+        <button class="btn" onclick="insert('7')">7</button>
+        <button class="btn" onclick="insert('8')">8</button>
+        <button class="btn" onclick="insert('9')">9</button>
+        <button class="btn" onclick="insert('*')">*</button>
+        <br>
+        <button class="btn" onclick="insert('4')">4</button>
+        <button class="btn" onclick="insert('5')">5</button>
+        <button class="btn" onclick="insert('6')">6</button>
+        <button class="btn" onclick="insert('-')">-</button>
+        <br>
+        <button class="btn" onclick="insert('1')">1</button>
+        <button class="btn" onclick="insert('2')">2</button>
+        <button class="btn" onclick="insert('3')">3</button>
+        <button class="btn" onclick="insert('+')">+</button>
+        <br>
+        
+        <button class="btn dd" onclick="insert('0')">0</button>
+        <button class="btn" onclick="insert('.')">,</button>
+        
+        
+        
+        
+        <button class="btn" onclick="calc()">=</button>
+    </div>
+    <!-- criando o nosso display da calculadora //-->
+    
+    
+</body>
+</html>
