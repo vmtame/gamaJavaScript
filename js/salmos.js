@@ -7,6 +7,7 @@ function getSalmo() {
 
         if(number.value > 150 || number.value < 0) {
             alert("Salmo nao existe");
+            cleanScr();
             return;
         }
         const uri = `https://www.abibliadigital.com.br/api/verses/nvi/sl/${number.value}`;
@@ -14,8 +15,6 @@ function getSalmo() {
         fetch( uri )
         .then(response => response.json())
         .then(res => {
-            // console.log(res);
-
             // process first info
             document.getElementById("inName").value = res.book.name;
             document.getElementById("inAuthors").value = res.book.author;
@@ -28,11 +27,26 @@ function getSalmo() {
             });
             string += "</ul>";
             document.getElementById("output").innerHTML = string;
-        }).catch( () => alert("Houve problema na busca!") )
+            document.getElementById("div-response").style.display = 'block';
+        }).catch( () => {
+            alert("Houve problema na busca!");
+            cleanScr();
+        });
 
         return;
     }
     
     alert('digite apenas numeros');
-    number.value = "";
+    cleanScr();
+    // number.value = "";
+}
+
+function cleanScr() {
+    document.getElementById("div-response").style.display = 'none';
+
+    const group = document.getElementsByClassName('to-clean');
+    for(let i = 0; i < group.length; i++) {
+        group[i].value = ""
+    }
+
 }

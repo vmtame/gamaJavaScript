@@ -8,3 +8,7 @@
 .ul-versos li:not(:last-child) {
     margin-bottom: 16px;
 }
+
+#div-response {
+    display: none;
+}
